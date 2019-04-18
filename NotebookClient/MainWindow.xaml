@@ -1,0 +1,37 @@
+﻿<Window x:Class="NotebookClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NotebookClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+            
+        
+        <ListView Grid.Row="1" ItemsSource="{Binding People}">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Имя"/>
+                <TextBlock Text="{Binding FirstName}"/>
+                <Label Content="Фамилия"/>
+                
+                <TextBlock Text="{Binding SecondName}"/>
+                <Label Content="Дата рождения"/>
+                <TextBlock Text="{Binding BirthDay}"/>
+            </StackPanel>
+            
+        </ListView>
+        <UniformGrid Grid.Row="2" Rows="1"  >
+            <Button Content="Обновить" Command="{Binding UpdateCommand}" Margin="15"/>
+            <Button   Content="Добавить" Margin="15"/>
+            <Button Content="Изменить" Margin="15"/>
+            <Button Content="Удалить" Margin="15"/>
+            
+        </UniformGrid>
+    </Grid>
+</Window>
