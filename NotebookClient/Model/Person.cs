@@ -14,7 +14,7 @@ namespace NotebookClient.Model
         public Person()
 
         {
-
+            BirthDay = DateTime.Today;
             Contacts = new List<Contact>();
 
         }

@@ -12,25 +12,34 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+
+
+        <ListBox Grid.Row="1" ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                       <StackPanel Orientation="Horizontal">
+                       <TextBlock Text="{Binding Firstname}"/>
+                            <TextBlock Text="  "/>
+                            <TextBlock Text="{Binding Secondname}"/>
+               
+               
+                       </StackPanel>
+                        <TextBlock Text="{Binding BirthDay, StringFormat=d, ConverterCulture=ru}"/> 
+                    </StackPanel>
+                    
+                </DataTemplate>
+                    
+               
+            </ListBox.ItemTemplate>
             
-        
-        <ListView Grid.Row="1" ItemsSource="{Binding People}">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Имя"/>
-                <TextBlock Text="{Binding FirstName}"/>
-                <Label Content="Фамилия"/>
-                
-                <TextBlock Text="{Binding SecondName}"/>
-                <Label Content="Дата рождения"/>
-                <TextBlock Text="{Binding BirthDay}"/>
-            </StackPanel>
             
-        </ListView>
+        </ListBox>
         <UniformGrid Grid.Row="2" Rows="1"  >
             <Button Content="Обновить" Command="{Binding UpdateCommand}" Margin="15"/>
-            <Button   Content="Добавить" Margin="15"/>
-            <Button Content="Изменить" Margin="15"/>
-            <Button Content="Удалить" Margin="15"/>
+            <Button   Content="Добавить" Command="{Binding AddCommand}" Margin="15"/>
+            <Button Content="Изменить" Command="{Binding EditCommand}" Margin="15"/>
+            <Button Content="Удалить"  Command="{Binding DeleteCommand}" Margin="15"/>
             
         </UniformGrid>
     </Grid>

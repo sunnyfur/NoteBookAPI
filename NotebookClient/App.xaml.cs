@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using NotebookClient.ViewModel;
 
 namespace NotebookClient
 {
@@ -13,5 +14,13 @@ namespace NotebookClient
     /// </summary>
     public partial class App : Application
     {
+       // public MainVm {get;}= new MainWindowViewModel();
+        //protected override void OnStartup(StartupEventArgs e)
+        //{
+        //    MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
+        //    base.OnStartup(e);
+        //    MainWindow.DataContext = mainWindowViewModel;
+
+        //}
     }
 }

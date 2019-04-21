@@ -1,5 +1,4 @@
-﻿using NotebookClient.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,20 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NotebookClient
+namespace NotebookClient.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PersonView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PersonView : Window
     {
-        public MainWindow()
+        public PersonView()
         {
             InitializeComponent();
-           this.DataContext = new MainWindowViewModel();
+        }
+        private void Accept_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
         }
     }
 }
