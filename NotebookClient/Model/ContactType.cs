@@ -8,6 +8,15 @@ namespace NotebookClient.Model
 {
     public class ContactType : BaseEntity
     {
-        public string Title { get; set; }
+        string title;
+        public string Title
+        {
+            get { return title; }
+            set
+            {
+                title = value;
+                OnPropertyChanged("Title");
+            }
+        }
     }
 }

@@ -13,8 +13,12 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-
-        <ListBox Grid.Row="1" ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson}">
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="personList" Grid.Row="1" ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -22,10 +26,10 @@
                        <TextBlock Text="{Binding Firstname}"/>
                             <TextBlock Text="  "/>
                             <TextBlock Text="{Binding Secondname}"/>
-               
+                           
                
                        </StackPanel>
-                        <TextBlock Text="{Binding BirthDay, StringFormat=d, ConverterCulture=ru}"/> 
+                          <TextBlock Text="{Binding BirthDay, StringFormat=d, ConverterCulture=ru}"/> 
                     </StackPanel>
                     
                 </DataTemplate>
@@ -33,13 +37,26 @@
                
             </ListBox.ItemTemplate>
             
-            
         </ListBox>
+            <ListBox Grid.Column="1" ItemsSource="{Binding Contacts}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Text="{Binding ContactType}"/>
+                            <TextBlock Text=": "/>
+                            <TextBlock Text="{Binding Value}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate> 
+            </ListBox>
+
+        </Grid>  
+       
         <UniformGrid Grid.Row="2" Rows="1"  >
             <Button Content="Обновить" Command="{Binding UpdateCommand}" Margin="15"/>
             <Button   Content="Добавить" Command="{Binding AddCommand}" Margin="15"/>
-            <Button Content="Изменить" Command="{Binding EditCommand}" Margin="15"/>
-            <Button Content="Удалить"  Command="{Binding DeleteCommand}" Margin="15"/>
+            <Button Content="Изменить" Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=personList,Path=SelectedItem}" Margin="15"/>
+            <Button Content="Удалить"  Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=personList,Path=SelectedItem}" Margin="15"/>
             
         </UniformGrid>
     </Grid>

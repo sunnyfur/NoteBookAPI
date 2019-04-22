@@ -43,6 +43,17 @@ namespace NotebookClient.ViewModel
             }
         }
 
+        ObservableCollection<Contact> contacts;
+        public ObservableCollection<Contact> Contacts
+        {
+            get { return contacts; }
+            set
+            {
+                contacts = value;
+                // dependencyProperty
+                OnPropertyChanged("Contacts");
+            }
+        }
 
         public MainWindowViewModel()
         {
@@ -141,7 +152,7 @@ namespace NotebookClient.ViewModel
 
                             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                            HttpResponseMessage response = client.PutAsJsonAsync("api/People"+person.Id, person).Result;
+                            HttpResponseMessage response = client.PutAsJsonAsync("api/People/"+person.Id, person).Result;
 
                         }
                         Update();
