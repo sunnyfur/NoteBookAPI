@@ -26,8 +26,15 @@ namespace NotebookClient.Model
 
         public int? ContactTypeId { get; set; }
 
-
-        public virtual ContactType ContactType { get; set; }
+        ContactType contactType;
+        public virtual ContactType ContactType
+        {   get{ return contactType; }
+            set
+            {
+                this.contactType = value;
+                OnPropertyChanged("ContactType");
+            }
+        }
 
     }
 

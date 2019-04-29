@@ -6,8 +6,9 @@ using System.Web;
 namespace NotebookClient.Model
 
 {
-    public class ContactType : BaseEntity
+    public class ContactType :BaseCl
     {
+        public int Id { get; set; }
         string title;
         public string Title
         {
@@ -17,6 +18,10 @@ namespace NotebookClient.Model
                 title = value;
                 OnPropertyChanged("Title");
             }
+        }
+        public override string ToString()
+        {
+            return Title;
         }
     }
 }

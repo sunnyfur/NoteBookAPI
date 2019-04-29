@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i= "clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:NotebookClient"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -19,7 +20,14 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <ListBox x:Name="personList" Grid.Row="1" ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson}">
-            <ListBox.ItemTemplate>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction 
+                        Command="{Binding GetContactsCommand}"
+                    />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                        <StackPanel Orientation="Horizontal">
@@ -38,11 +46,11 @@
             </ListBox.ItemTemplate>
             
         </ListBox>
-            <ListBox Grid.Column="1" ItemsSource="{Binding Contacts}">
+            <ListBox x:Name="contactList" Grid.Column="1" ItemsSource="{Binding Contacts}" SelectedItem="{Binding SelectedContact}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" >
-                            <TextBlock Text="{Binding ContactType}"/>
+                            <TextBlock Text="{Binding ContactType.Title}"/>
                             <TextBlock Text=": "/>
                             <TextBlock Text="{Binding Value}"/>
                         </StackPanel>
@@ -53,11 +61,14 @@
         </Grid>  
        
         <UniformGrid Grid.Row="2" Rows="1"  >
-            <Button Content="Обновить" Command="{Binding UpdateCommand}" Margin="15"/>
-            <Button   Content="Добавить" Command="{Binding AddCommand}" Margin="15"/>
-            <Button Content="Изменить" Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=personList,Path=SelectedItem}" Margin="15"/>
-            <Button Content="Удалить"  Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=personList,Path=SelectedItem}" Margin="15"/>
-            
+            <Button Content="Обновить" Command="{Binding UpdateCommand}" Margin="5"/>
+            <Button   Content="Добавить" Command="{Binding AddCommand}" Margin="5"/>
+            <Button Content="Изменить" Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=personList,Path=SelectedItem}" Margin="5"/>
+            <Button Content="Удалить"  Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=personList,Path=SelectedItem}" Margin="5"/>
+            <Button Content="Добавить контакт"  Command="{Binding AddContactCommand}"  Margin="5"/>
+            <Button Content="Изменить контакт"  Command="{Binding EditContactCommand}" CommandParameter="{Binding ElementName=contactList,Path=SelectedItem}" Margin="5"/>
+            <Button Content="Удалить контакт"  Command="{Binding DeleteContactCommand}" CommandParameter="{Binding ElementName=contactList,Path=SelectedItem}" Margin="5"/>
+
         </UniformGrid>
     </Grid>
 </Window>
